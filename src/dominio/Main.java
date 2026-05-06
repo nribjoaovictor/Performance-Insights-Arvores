@@ -4,12 +4,13 @@ import java.util.Scanner;
 import colecao.IColecao;
 import listaencadeada.ListaEncadeada;
 import util.GeradorArquivosPersonagem;
+import listaencadeada.ListaEncadeadaArrayList;
 
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        IColecao<Personagem> lista = new ListaEncadeada<>();
+        IColecao<Personagem> lista = new ListaEncadeadaArrayList<>();
 
         int opcao;
         do {
