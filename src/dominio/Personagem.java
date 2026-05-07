@@ -3,7 +3,6 @@ package dominio;
 
 
 public class Personagem {
-
     //Atributos
     private String nome;
     private String classe;
@@ -31,4 +30,7 @@ public class Personagem {
         return nome.equals(that.nome);
     }
 
+    public String getNome() {
+        return nome;
+    }
 }
