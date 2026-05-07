@@ -6,8 +6,8 @@ public class ArvoreBinaria<T> extends ArvoreBinariaBase<T> {
     protected NoArvore<T> raiz;
     protected int quantidadeNos;
 
-    public ArvoreBinaria(Comparator<T> comparator) {
-        super(comparator);
+    public ArvoreBinaria(Comparator<T> comparador) {
+        super(comparador);
         this.raiz = null;
         this.quantidadeNos = 0;
     }
