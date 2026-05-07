@@ -2,8 +2,7 @@ package dominio;
 
 import java.util.Comparator;
 
-public class ComparadorPersonagemPorNome
-        implements Comparator<Personagem> {
+public class ComparadorPersonagemPorNome implements Comparator<Personagem> {
 
     @Override
     public int compare(Personagem p1, Personagem p2) {

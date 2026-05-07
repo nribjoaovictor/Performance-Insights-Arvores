@@ -33,4 +33,8 @@ public class Personagem {
     public String getNome() {
         return nome;
     }
+
+    public String getClasse() {
+        return classe;
+    }
 }
