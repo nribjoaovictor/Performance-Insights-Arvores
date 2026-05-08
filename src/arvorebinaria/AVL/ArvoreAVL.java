@@ -7,7 +7,7 @@ import java.util.Comparator;
 
 public class ArvoreAVL<T> extends ArvoreBinaria<T>{
     //Se auto-balanceia
-    public ArvoreAVL(comparator<T> comparador){
+    public ArvoreAVL(Comparator<T> comparador){
         super(comparador);
     }
 
@@ -16,7 +16,7 @@ public class ArvoreAVL<T> extends ArvoreBinaria<T>{
         raiz = adicionarRecursivoAVL(raiz, valor);
     }
 
-    private adicionarRecursivoAVL(NoArvore<T> atual, T valor){
+    private NoArvore<T> adicionarRecursivoAVL(NoArvore<T> atual, T valor){
         if (atual == null) {
             quantidadeNos++;
             return new NoArvore<>(valor);
@@ -45,10 +45,10 @@ public class ArvoreAVL<T> extends ArvoreBinaria<T>{
         ));
     }
 
-    private alturaDoNo(NoArvore<T> no){
+    private int alturaDoNo(NoArvore<T> no){
         if (no == null){
             return -1;
-        } return no.getEsquerda();
+        } return no.getAltura();
     }
 
     private int fatorBalanceamento(NoArvore<T> no){
