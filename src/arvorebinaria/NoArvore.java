@@ -37,10 +37,12 @@ public class NoArvore<T> {
     }
 
     public int getAltura() {
+
         return altura;
     }
 
-    public void setaltura(int altura) {
-        altura = altura;
+    public void setAltura(int altura) {
+
+        this.altura = altura;
     }
 }

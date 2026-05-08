@@ -45,11 +45,7 @@ public class ArvoreBinaria<T> extends ArvoreBinariaBase<T> {
      * } else {
      *     NoArvore<T> atual = raiz;
      *     while (true) {
-     *         int comparacao =
-     *                 comparador.compare(
-     *                         novoValor,
-     *                         atual.getValor()
-     *                 );
+     *         int comparacao = comparador.compare(novoValor,atual.getValor());
      *         // esquerda
      *         if (comparacao < 0) {
      *             if (atual.getEsquerda() != null) {
