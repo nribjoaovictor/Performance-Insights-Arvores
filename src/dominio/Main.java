@@ -5,12 +5,24 @@ import colecao.IColecao;
 import listaencadeada.ListaEncadeada;
 import util.GeradorArquivosPersonagem;
 import listaencadeada.ListaEncadeadaArrayList;
-
+import arvorebinaria.AVL.ArvoreAVL;
+import arvorebinaria.ArvoreBinaria;
+import dominio.ComparadorPersonagemPorNome;
+import dominio.ComparadorPersonagemPorClasse;
+import arvorebinaria.ArvoreBinariaBase;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        IColecao<Personagem> lista = new ListaEncadeadaArrayList<>();
+
+        //IColecao<Personagem> lista = new ListaEncadeadaArrayList<>();
+
+        //IColecao<Personagem> arvore = new ArvoreBinaria<>(new ComparadorPersonagemPorNome());
+        //IColecao<Personagem> arvore = new ArvoreBinaria<>(new ComparadorPersonagemPorClasse());
+
+        IColecao<Personagem> arvore = new ArvoreAVL<>(new ComparadorPersonagemPorNome());
+        //IColecao<Personagem> arvore = new ArvoreAVL<>(new ComparadorPersonagemPorClasse());
+
 
         int opcao;
         do {
@@ -21,7 +33,8 @@ public class Main {
             System.out.println("4. Ver todos os personagens");
             System.out.println("5. Ver quantidade de nós");
             System.out.println("6. Gerar arquivo com personagens");
-            System.out.println("7. Carregar personagens para a lista");
+            System.out.println("7. Carregar personagens para a árvore");
+            System.out.println("8. Ver altura da árvore");
             System.out.println("0. Sair");
             System.out.println("====================================");
             System.out.print("Escolha uma opção: ");
@@ -40,28 +53,28 @@ public class Main {
                     System.out.print("Sexo: ");
                     String sexo = sc.nextLine();
 
-                    lista.adicionar(new Personagem(nome, classe, raca, sexo));
+                    arvore.adicionar(new Personagem(nome, classe, raca, sexo));
                     System.out.println("Personagem adicionado com sucesso!");
                 }
                 case 2 -> {
                     System.out.print("Digite o nome do personagem para remover: ");
                     String nome = sc.nextLine();
-                    boolean removido = lista.remover(new Personagem(nome, "", "", ""));
+                    boolean removido = arvore.remover(new Personagem(nome, "", "", ""));
                     if (removido) System.out.println("Personagem removido!");
                     else System.out.println("Não encontrado.");
                 }
                 case 3 -> {
                     System.out.print("Digite o nome para pesquisar: ");
                     String nome = sc.nextLine();
-                    Personagem encontrado = lista.pesquisar(new Personagem(nome, "", "", ""));
+                    Personagem encontrado = arvore.pesquisar(new Personagem(nome, "", "", ""));
                     if (encontrado != null) System.out.println("Encontrado: " + encontrado);
-                    else System.out.println("Personagem não existe na lista.");
+                    else System.out.println("Personagem não existe na arvore.");
                 }
                 case 4 -> {
-                    System.out.println("Lista Atual:");
-                    System.out.println(lista.toString());
+                    System.out.println("Arvore Atual:");
+                    System.out.println(arvore.toString());
                 }
-                case 5 -> System.out.println("Total de elementos: " + lista.quantidadeNos());
+                case 5 -> System.out.println("Total de elementos: " + arvore.quantidadeNos());
                 case 0 -> System.out.println("Encerrando...");
                 default -> System.out.println("Opção inválida!");
                 case 6 -> {
@@ -105,7 +118,11 @@ public class Main {
 
                 case 7 -> {
 
-                    lista = new ListaEncadeada<>();
+                    //arvore = new ArvoreBinaria<>(new ComparadorPersonagemPorNome());
+                    //arvore = new ArvoreBinaria<>(new ComparadorPersonagemPorClasse());
+
+                    arvore = new ArvoreAVL<>(new ComparadorPersonagemPorNome());
+                    //arvore = new ArvoreAVL<>(new ComparadorPersonagemPorClasse());
 
                     System.out.println("\nQual arquivo deseja carregar?");
                     System.out.println("1. 100.000 personagens");
@@ -120,19 +137,19 @@ public class Main {
                         case 1 ->
                                 carregarArquivo(
                                         "personagens100k.txt",
-                                        lista
+                                        arvore
                                 );
 
                         case 2 ->
                                 carregarArquivo(
                                         "personagens200k.txt",
-                                        lista
+                                        arvore
                                 );
 
                         case 3 ->
                                 carregarArquivo(
                                         "personagens400k.txt",
-                                        lista
+                                        arvore
                                 );
 
                         default ->
@@ -141,13 +158,20 @@ public class Main {
                     }
 
                 }
+                case 8 -> {
+                    System.out.println(
+                            "Altura da árvore: "
+                                    + ((ArvoreBinariaBase<Personagem>) arvore).altura()
+                    );
+                }
+
             }
         } while (opcao != 0);
         sc.close();
     }
     private static void carregarArquivo(
             String caminho,
-            IColecao<Personagem> lista
+            IColecao<Personagem> arvore
     ) {
 
         int contador = 0;
@@ -168,7 +192,7 @@ public class Main {
                 String sexo = partes[3];
 
                 Personagem p = new Personagem(nome, classe, raca, sexo);
-                lista.adicionar(p);
+                arvore.adicionar(p);
                 contador++;
             }
 

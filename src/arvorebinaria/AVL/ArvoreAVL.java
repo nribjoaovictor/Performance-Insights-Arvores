@@ -60,4 +60,64 @@ public class ArvoreAVL<T> extends ArvoreBinaria<T>{
 
     //balancear, rotação direita e rotação esquerda.
 
+    private NoArvore<T> balancear (NoArvore<T> atual){
+        int fator = fatorBalanceamento(atual);
+
+        // Caso 1: esquerda-esquerda
+        if (fator > 1 && fatorBalanceamento(atual.getEsquerda()) >= 0) {
+            return rotacaoDireita(atual);
+        }
+
+        // Caso 2: esquerda-direita
+        if (fator > 1 && fatorBalanceamento(atual.getEsquerda()) < 0) {
+            atual.setEsquerda(
+                    rotacaoEsquerda(atual.getEsquerda())
+            );
+            return rotacaoDireita(atual);
+        }
+
+        // Caso 3: direita-direita
+        if (fator < -1 && fatorBalanceamento(atual.getDireita()) <= 0) {
+            return rotacaoEsquerda(atual);
+        }
+
+        // Caso 4: direita-esquerda
+        if (fator < -1 && fatorBalanceamento(atual.getDireita()) > 0) {
+            atual.setDireita(
+                    rotacaoDireita(atual.getDireita())
+            );
+            return rotacaoEsquerda(atual);
+        }
+
+        return atual;
+    }
+
+    private NoArvore<T> rotacaoDireita(NoArvore<T> noDesbalanceado) {
+
+        NoArvore<T> novoPai = noDesbalanceado.getEsquerda();
+        NoArvore<T> subArvoreDireitaDoNovoPai = novoPai.getDireita();
+
+        novoPai.setDireita(noDesbalanceado);
+        noDesbalanceado.setEsquerda(subArvoreDireitaDoNovoPai);
+
+        atualizarAltura(noDesbalanceado);
+        atualizarAltura(novoPai);
+
+        return novoPai;
+    }
+
+    private NoArvore<T> rotacaoEsquerda(NoArvore<T> noDesbalanceado) {
+
+        NoArvore<T> novoPai = noDesbalanceado.getDireita();
+        NoArvore<T> subArvoreEsquerdaDoNovoPai = novoPai.getEsquerda();
+
+        novoPai.setEsquerda(noDesbalanceado);
+        noDesbalanceado.setDireita(subArvoreEsquerdaDoNovoPai);
+
+        atualizarAltura(noDesbalanceado);
+        atualizarAltura(novoPai);
+
+        return novoPai;
+    }
 }
+
