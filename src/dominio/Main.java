@@ -30,11 +30,12 @@ public class Main {
             System.out.println("1. Adicionar personagem");
             System.out.println("2. Remover personagem (por nome)");
             System.out.println("3. Pesquisar personagem (por nome)");
-            System.out.println("4. Ver todos os personagens");
+            System.out.println("4. Ver todos os personagens/caminharEmOrdem");
             System.out.println("5. Ver quantidade de nós");
             System.out.println("6. Gerar arquivo com personagens");
             System.out.println("7. Carregar personagens para a árvore");
             System.out.println("8. Ver altura da árvore");
+            System.out.println("9. Caminhamento em nível:");
             System.out.println("0. Sair");
             System.out.println("====================================");
             System.out.print("Escolha uma opção: ");
@@ -162,6 +163,13 @@ public class Main {
                     System.out.println(
                             "Altura da árvore: "
                                     + ((ArvoreBinariaBase<Personagem>) arvore).altura()
+                    );
+                }
+                case 9 -> {
+                    System.out.println("Caminhamento em nível:");
+                    System.out.println(
+                            ((ArvoreBinariaBase<Personagem>) arvore)
+                                    .caminharEmNivel()
                     );
                 }
 
