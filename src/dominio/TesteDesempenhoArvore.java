@@ -30,8 +30,8 @@ public class TesteDesempenhoArvore {
                 "Árvore Binária",
                 arquivos,
                 () -> new ArvoreBinaria<>(
-                        new ComparadorPersonagemPorNome()
-                        //new ComparadorPersonagemPorClasse()
+                        //new ComparadorPersonagemPorNome()
+                        new ComparadorPersonagemPorClasse()
                 )
         );
 
@@ -39,8 +39,8 @@ public class TesteDesempenhoArvore {
                 "Árvore AVL",
                 arquivos,
                 () -> new ArvoreAVL<>(
-                        new ComparadorPersonagemPorNome()
-                        //new ComparadorPersonagemPorClasse()
+                        //new ComparadorPersonagemPorNome()
+                        new ComparadorPersonagemPorClasse()
                 )
         );
     }
